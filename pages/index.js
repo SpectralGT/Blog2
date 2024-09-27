@@ -10,7 +10,7 @@ export default function Home(props) {
   return (
     <div className="">
       <Head>
-        <title>Atharv's Blog</title>
+        <title>Atharv&apos;s Blog</title>
       </Head>
       <Hero/>
       {
