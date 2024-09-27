@@ -1,0 +1,45 @@
+.post-card {
+  border: 1px dashed var(--red);
+  aspect-ratio: 1/1;
+  position: relative;
+  font-family: OctosquaresThin;
+}
+
+.title {
+  color: var(--red);
+  font-size: 1.1em;
+  padding: 0.5em;
+  text-align: center;
+  background-color: color-mix(in srgb, var(--red) 10%, transparent);
+  border-bottom: 1px dashed var(--red);
+}
+
+.description {
+  color: var(--white);
+  padding: 1em;
+  font-size: 1em;
+}
+
+.date-time {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: var(--white);
+  text-align: center;
+  font-size: 0.7em;
+  font-weight: 800;
+  background-color: color-mix(in srgb, var(--red) 30%, transparent);
+  border-top: 1px dashed var(--red);
+}
+
+.date,
+.time {
+  padding: 1em;
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+
+.date {
+  border-right: 1px dashed var(--red);
+}

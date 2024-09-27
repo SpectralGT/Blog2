@@ -4,17 +4,18 @@ import matter from 'gray-matter';
 import Link from 'next/link';
 import Head from 'next/head';
 import Postcard from '../components/PostCard';
+import Hero from '../components/Hero';
 
 export default function Home(props) {
   return (
-    <div className='container w-[80%] mx-auto mt-10'>
+    <div className="">
       <Head>
-        <title>Cooking Blog</title>
+        <title>Atharv's Blog</title>
       </Head>
-      <h1 className="text-green-700 text-3xl font-bold my-12">Cooking Blog</h1>
+      <Hero/>
       {
         props.posts.length > 0 ? (
-          <div className='md:grid md:grid-cols-3 gap-8'>
+          <div className="listing">
             {
               props.posts.map((post,index) => (
                 <Link href={`/posts/${post.slug}`} key={index}>
