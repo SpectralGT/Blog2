@@ -1,17 +1,24 @@
 .post-card {
-  border: 1px dashed var(--red);
+  border: 1px solid var(--red);
   aspect-ratio: 1/1;
   position: relative;
   font-family: OctosquaresThin;
+  transition: all 0.1s;
+}
+
+.post-card:hover{
+  transform: scale(1.1);
 }
 
 .title {
-  color: var(--red);
+  font-weight: 800;
+  color: var(--black);
   font-size: 1.1em;
   padding: 0.5em;
   text-align: center;
-  background-color: color-mix(in srgb, var(--red) 10%, transparent);
-  border-bottom: 1px dashed var(--red);
+  /* background-color: color-mix(in srgb, var(--red) 10%, transparent); */
+  background-color: var(--red);
+  border-bottom: 1px solid var(--red);
 }
 
 .description {
@@ -28,8 +35,7 @@
   text-align: center;
   font-size: 0.7em;
   font-weight: 800;
-  background-color: color-mix(in srgb, var(--red) 30%, transparent);
-  border-top: 1px dashed var(--red);
+  border-top: 1px solid var(--red);
 }
 
 .date,
@@ -41,5 +47,5 @@
 }
 
 .date {
-  border-right: 1px dashed var(--red);
+  border-right: 1px solid var(--red);
 }

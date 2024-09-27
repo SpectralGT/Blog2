@@ -7,14 +7,14 @@ import { MDXRemote } from 'next-mdx-remote';
 
 export default function Post(props) {
   return (
-    <div className='container w-[80%] mx-auto mt-10'>
+    <div className='post-container'>
         {
             props.frontMatter && props.mdxSource && (
-                <div>
+                <div className='post-content'>
                     <Head>
-                        <title>{props.frontMatter.title}</title>
+                        <title >{props.frontMatter.title}</title>
                     </Head>
-                <h1 className='font-semibold my-8 text-xl text-green-700'>{props.frontMatter.title}</h1>
+                <h1 className='post-title' id='post-title'>{props.frontMatter.title}</h1>
                 
                 <MDXRemote {...props.mdxSource} />
                 </div>
