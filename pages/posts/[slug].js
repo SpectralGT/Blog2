@@ -19,37 +19,29 @@ export default function Post(props) {
               href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
             ></link>
           </Head>
-          <Script
-            id="script1"
-            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
-          ></Script>
-
-          <Script
-            id="script2"
-            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"
-          ></Script>
-
-          <Script id="script3">hljs.highlightAll();</Script>
 
           <h1 className="post-title" id="post-title">
             {props.frontMatter.title}
           </h1>
 
-          <pre className="prettyprint">
-            <code>
-              {`class Voila {
-            public:
-            // Voila
-            static const string VOILA = "Voila";
-            
-            // will not interfere with embedded <a href="#voila2">tags</a>.
-        }`}
-            </code>
-          </pre>
-
           <MDXRemote {...props.mdxSource} />
         </div>
       )}
+      <Script
+        id="script1"
+        strategy="beforeInteractive"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+      />
+
+      <Script
+        id="script2"
+        strategy="beforeInteractive"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"
+      />
+
+      <Script id="script3" strategy="afterInteractive">
+        hljs.highlightAll();
+      </Script>
     </div>
   );
 }
