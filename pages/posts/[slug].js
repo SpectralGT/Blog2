@@ -18,12 +18,18 @@ export default function Post(props) {
               rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
             ></link>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
-
-            <script>hljs.highlightAll();</script>
           </Head>
+          <Script
+            id="script1"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+          ></Script>
+
+          <Script
+            id="script2"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"
+          ></Script>
+
+          <Script id="script3">hljs.highlightAll();</Script>
 
           <h1 className="post-title" id="post-title">
             {props.frontMatter.title}
