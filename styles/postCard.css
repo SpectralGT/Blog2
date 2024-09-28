@@ -6,7 +6,7 @@
   transition: all 0.1s;
 }
 
-.post-card:hover{
+.post-card:hover {
   transform: scale(1.1);
 }
 
@@ -21,10 +21,14 @@
   border-bottom: 1px solid var(--red);
 }
 
+.spacer {
+  padding: 1em;
+}
+
 .description {
   color: var(--white);
   padding: 1em;
-  font-size: 1em;
+  font-size: 0.9em;
 }
 
 .date-time {

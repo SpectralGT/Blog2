@@ -12,6 +12,10 @@
   font-size: 1.3em;
 }
 
+p {
+  margin-top: 1em;
+}
+
 strong {
   text-shadow: 0 0 15px #dc3f5850;
   font-weight: 900;
@@ -19,12 +23,22 @@ strong {
 }
 
 .post-content h1 {
+  padding: 0.5em;
   margin-top: 1em;
   font-family: OctosquaresThin;
   text-transform: uppercase;
   color: var(--black);
-  font-size: 2em;
+  font-size: 1.5em;
   background-color: var(--red);
+}
+
+hr {
+  margin: 3em 0em;
+  box-shadow: 0 0 15px #ffffffff;
+}
+
+h1 strong {
+  color: var(--black);
 }
 
 .post-content h2 {
@@ -72,4 +86,13 @@ pre {
   border: 1px solid var(--red);
   margin-top: 2em;
   margin-bottom: 2em;
+  color: var(--white);
+}
+
+code {
+  color: var(--red);
+}
+
+pre code {
+  color: var(--white);
 }
