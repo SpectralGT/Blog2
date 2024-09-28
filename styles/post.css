@@ -12,8 +12,12 @@
   font-size: 1.3em;
 }
 
-p {
+.post-content p {
   margin-top: 1em;
+}
+
+.post-content a {
+  color: var(--red);
 }
 
 strong {
