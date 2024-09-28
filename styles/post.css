@@ -80,23 +80,50 @@ h3 strong {
   font-size: 3em;
   color: var(--red);
   /* background-color: color-mix(in srgb, var(--red) 30%, transparent); */
-  border: 1px solid var(--red);
+  /* border: 1px solid var(--red); */
   text-shadow: 0 0 15px #dc3f5850;
 }
 
 pre {
   font-size: 0.8em;
-  padding: 0.5em;
-  border: 1px solid var(--red);
+  padding: 2em 0em;
+  /* border: 1px solid var(--red); */
   margin-top: 2em;
   margin-bottom: 2em;
   color: var(--white);
+  background-color: #000 !important;
+  border-radius: 5px;
 }
 
 code {
-  color: var(--red);
+  color: var(--white) !important;
 }
 
 pre code {
   color: var(--white);
+  background-color: #000 !important;
+}
+
+.hljs-keyword {
+  color: var(--red) !important;
+}
+.hljs-title {
+  color: goldenrod !important;
+}
+.hljs-built_in {
+  /* color: var(--red) !important; */
+  color: goldenrod !important;
+}
+
+.hljs-string {
+  /* color: var(--white) !important; */
+  color: lightgreen !important;
+}
+
+.hljs-comment {
+  color: color-mix(in srgb, var(--white) 70%, transparent) !important;
+}
+
+.hljs-number {
+  color: lightgreen !important;
 }
