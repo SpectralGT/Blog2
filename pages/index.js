@@ -5,8 +5,24 @@ import Link from "next/link";
 import Head from "next/head";
 import Postcard from "../components/PostCard";
 import Hero from "../components/Hero";
+import LoadingScreen from "../components/LoadingScreen";
+import { useEffect, useState } from "react";
 
 export default function Home(props) {
+  const [loading, setLoading] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setLoading((loading) => loading + 1), 50);
+
+    return () => {
+      clearInterval(id);
+    };
+  }, []);
+
+  if (loading <= 100) {
+    return <LoadingScreen percentage={loading} />;
+  }
+
   return (
     <div className="">
       <Head>

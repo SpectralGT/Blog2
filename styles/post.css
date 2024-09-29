@@ -96,11 +96,11 @@ pre {
 }
 
 code {
-  color: var(--white) !important;
+  color: var(--red) !important;
 }
 
 pre code {
-  color: var(--white);
+  color: var(--white) !important;
   background-color: #000 !important;
 }
 

@@ -1,0 +1,9 @@
+.LoadingScreen {
+  width: 100vw;
+  height: 100vh;
+  font-family: OctosquaresBlack;
+  color: var(--red);
+  text-align: center;
+  line-height: 100vh;
+  font-size: clamp(4em, 20vw, 10em);
+}

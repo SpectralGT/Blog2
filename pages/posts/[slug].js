@@ -14,12 +14,12 @@ export default function Post(props) {
         <div className="post-content">
           <Head>
             <title>{props.frontMatter.title}</title>
+
             <link
               rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
             ></link>
           </Head>
-
           <h1 className="post-title" id="post-title">
             {props.frontMatter.title}
           </h1>
