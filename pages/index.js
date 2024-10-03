@@ -18,9 +18,26 @@ export default function Home(props) {
       clearInterval(id);
     };
   }, []);
-
+  let body = <div></div>;
   if (loading <= 100) {
-    return <LoadingScreen percentage={loading} />;
+    body = <LoadingScreen percentage={loading} />;
+  } else {
+    body = (
+      <div>
+        <Hero />;
+        {props.posts.length > 0 ? (
+          <div className="listing">
+            {props.posts.map((post, index) => (
+              <Link href={`/posts/${post.slug}`} key={index}>
+                <Postcard post={post} />
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <h2 className="font-sans text-3xl">No posts yet</h2>
+        )}
+      </div>
+    );
   }
 
   return (
@@ -33,18 +50,7 @@ export default function Home(props) {
           content="kRbwjumXat52-e3mUB7tt-faI1jx9mY0x1EMOPC5egE"
         />
       </Head>
-      <Hero />
-      {props.posts.length > 0 ? (
-        <div className="listing">
-          {props.posts.map((post, index) => (
-            <Link href={`/posts/${post.slug}`} key={index}>
-              <Postcard post={post} />
-            </Link>
-          ))}
-        </div>
-      ) : (
-        <h2 className="font-sans text-3xl">No posts yet</h2>
-      )}
+      {body}
     </div>
   );
 }
