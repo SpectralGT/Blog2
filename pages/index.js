@@ -12,7 +12,7 @@ export default function Home(props) {
   const [loading, setLoading] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setLoading((loading) => loading + 1), 50);
+    const id = setInterval(() => setLoading((loading) => loading + 1), 20);
 
     return () => {
       clearInterval(id);
@@ -28,6 +28,10 @@ export default function Home(props) {
       <Head>
         <link rel="icon" href="/favicon.svg" sizes="any" />
         <title>Atharv&apos;s Blog</title>
+        <meta
+          name="google-site-verification"
+          content="kRbwjumXat52-e3mUB7tt-faI1jx9mY0x1EMOPC5egE"
+        />
       </Head>
       <Hero />
       {props.posts.length > 0 ? (
