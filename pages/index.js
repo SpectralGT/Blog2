@@ -9,22 +9,45 @@ import LoadingScreen from "../components/LoadingScreen";
 import { useEffect, useState } from "react";
 
 export default function Home(props) {
+  // Track loading percentage
   const [loading, setLoading] = useState(0);
+  // Track if loading screen should be shown
+  const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
-    const id = setInterval(() => setLoading((loading) => loading + 1), 20);
+    // Check if the loading screen has already been shown
+    const hasShownLoading = sessionStorage.getItem("showLoading");
 
-    return () => {
+    if (hasShownLoading) {
+      // Skip loading screen if it has been shown before
+      setShowLoading(false);
+      return;
+    }
+
+    // Display the loading screen and update the percentage
+    const id = setInterval(() => {
+      setLoading((loading) => loading + 1);
+    }, 20);
+
+    // Stop the loading animation at 100%
+    if (loading >= 100) {
       clearInterval(id);
-    };
-  }, []);
+      sessionStorage.setItem("showLoading", "true");
+      setShowLoading(false);
+    }
+
+    return () => clearInterval(id);
+  }, [loading]);
+
   let body = <div></div>;
-  if (loading <= 100) {
+
+  // Conditional rendering based on showLoading state
+  if (showLoading && loading <= 100) {
     body = <LoadingScreen percentage={loading} />;
   } else {
     body = (
       <div>
-        <Hero />;
+        <Hero />
         {props.posts.length > 0 ? (
           <div className="listing">
             {props.posts.map((post, index) => (
@@ -55,10 +78,10 @@ export default function Home(props) {
   );
 }
 
-// fetching the posts.
+// Fetching the posts.
 export async function getStaticProps() {
   let files = fs.readdirSync(path.join("posts"));
-  files = files.filter((file) => file.split(".")[1] == "mdx");
+  files = files.filter((file) => file.split(".")[1] === "mdx");
   const posts = files.map((file) => {
     const fileData = fs.readFileSync(path.join("posts", file), "utf-8");
     const { data } = matter(fileData);
