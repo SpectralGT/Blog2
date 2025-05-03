@@ -1,0 +1,253 @@
+---
+date: "2025-05-02"
+thumbnail: /assets/banana-bread.webp
+title: "Docker Notes"
+description: Docker is Virtualization software
+readTime: 10
+---
+
+# What and Why of Docker ?
+
+- Virtualization software
+- Makes developing and deploying applications much easier
+- Packages application with all the necessary dependencies, configuration, system tools and runtimes
+- Portable artifact, easily shared and distributed
+
+
+| Development before containers                                                                 | Development after containers                                                                 |
+|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| <ul><li>Each developer needs to install and configure all services directly on their OS</li><li>Installation process different for each OS environment</li><li>Many steps where something can go wrong</li></ul> | <ul><li>Own isolated environment</li><li>Postgres packaged with all dependencies and configs</li><li>Start service as a Docker container using 1 Docker command</li><li>Command same for all services</li><li>Standardized process for running any service on any local dev environment</li><li>Easy to run different versions of the same app without conflicts</li></ul> |
+
+
+
+
+
+
+
+| Deployment before Containers                                      | Deployment after Containers                                           |
+|-------------------------------------------------------------------|-----------------------------------------------------------------------|
+| <ul><li>Installations and configurations done directly on the server's OS</li><li>Dependency version conflicts</li> <li>Human errors can happen</li> <li>Back and forth communications </li> </ul> | <ul><li>Instead of textual, everything is packaged inside the Docker artifact</li><li>No configurations needed on the server (except Docker runtime)</li><li>Less room for errors</li><li>Install Docker runtime on the server</li><li>Run Docker command to fetch and run the Docker artifacts</li></ul> |
+
+
+
+# Docker vs Virtual Machine
+
+- An OS is made up of 2 layers i.e. OS Kernel and OS Application Layer
+- Kernel is at the core of every OS
+- Kernel interacts between hardware and software components
+- Docker contains the OS application layer
+- Services and apps are installed on top of that layer
+- VMs contains both OS application layer and OS kernel layer
+- Docker images are much smaller (Docker images are in MD while VM images in GB)
+- Containers take seconds to start while VMs take minutes to start
+- Docker is compatible only with Linux distros while VMs are compatible with all OS
+- Docker was originally made for Linux
+- However, Docker Desktop allows you to run Linux containers on Windows or MacOS
+- Docker Desktop uses a Hypervisor layer with a lightweight Linux distro
+
+# Install Docker Locally
+
+- Got to the official Docker website
+- Follow installation steps
+
+## Docker Desktop includes
+
+- Docker Engine
+  - A server with a long-running daemon process "Dockerd"
+  - Manages images and containers
+- Docker CLI - Client
+  - CLI to interact with Docker Server
+  - Execute Docker commands to start/stop... containers
+- GUI Client
+  - To manages your containers and images with a GUI
+
+# Images vs Containers
+
+| Images | Docker Container |
+|---|---|
+| <ul><li>An executable application artifact</li><li>Includes app source code, but also complete environment configuration</li><li>Add environment variables, create directories, files, etc.</li><li>Immutable template that defines how a container will be realized</li><li>You can run multiple containers from 1 image</li></ul> | <ul><li>Actually starts the application</li><li>A running instance of an image</li><li>That's when the container environment is created</li></ul> |
+
+# Public and Private Registries
+
+| Public Docker Registries | Private Docker Registries |
+|---|---|
+| <ul><li>Dockerhub largest public registry</li><li>Anyone can search and download docker images</li></ul> | <ul><li>You need to authenticate before accessing the registry</li><li>All big cloud provider offer private registries: Amazon ECR, Google Container Registry, ect.</li><li>Nexus (popular artifact repository manager)</li><li>Docker Hub</li></ul> |
+
+
+
+# Registry vs Repository
+
+## Docker Registry
+
+- A service providing storage
+- Collection of repositories
+
+## Docker Repository
+
+- Collection of related images with same name but different versions
+
+
+# Docker Registries
+
+- A storage and distribution system for Docker images
+- Official images available form applications like Redis, Mongo,etc.
+- Official images are maintained by the software authors or in collaboration with Docker community
+- Docker hosts one of the biggest Docker Registry, called 'Docker Hub'
+
+# Image Versioning
+
+- Docker images are versioned
+- Different versions are identified by tags
+
+
+# Main Docker commands
+
+```bash
+docker images #List all docker images
+```
+
+```bash
+docker ps #List all running containers
+```
+
+```bash
+#Pull an image from a registry
+docker pull {name}:{tag}
+
+docker pull nginx:1.23
+#or
+docker pull nginx:latest
+```
+
+- To create a container with random name from given image(either local or in dockerhub) and starts it
+```bash
+docker run {name}:{tag}
+
+docker run nginx:1.23
+```
+
+Run container in background and prints the container ID using `-d` or `--detach`
+
+```bash
+docker run -d nginx:1.23
+```
+
+To view logs from service running inside the container (which are present at the time of execution) use :
+
+```bash
+docker logs {container}
+docker logs 1e342f2
+```
+
+To stop a container
+
+```bash
+docker stop {container}
+docker stop 1e342f2
+```
+
+# Run Containers
+
+- docker run command Creates a new container
+- Doesn't re-use previous container
+- use `-a` pr `--all` to List all container (stopped and running)
+
+```bash
+docker ps -a
+```
+
+- to stop a container :
+
+```bash
+docker stop {container}
+```
+
+- to give name to a container when creating a new container, use:
+
+```bash
+docker run --name {name} {name}:{tag}
+
+docker run --name web-app nginx:1.23
+```
+
+- to stare one or more stopped containers, use:
+
+```bash
+docker start {container}
+```
+
+# Port Binding
+
+- Application inside container runs in an isolated Docker network
+- This allows us to run the same app running on the same port multiple times
+- We need to expose the container port to the host (the machine the container runs on)
+- use `-p` or `--publish` to publish a container's port to the host
+
+```bash
+docker run -d -p {HOST_PORT}:{CONTAINER_PORT} {name}:{tag}
+
+docker run -d -p 9000:80 nginx:1.23
+```
+
+# Create own Image (Dockerfile)
+
+- Dockerfile is text document that contains commands to assemble an image
+- Docker can then build an image by reading those instruction
+
+## Structure of Dockerfile
+
+- **Dockerfile** start from a parent image or **base image**
+- You choose the base image, depending on which tool you need to have available, for example node, tomcat, python,etc.
+- Dockerfile must begin with a `FROM` instruction
+- Build this image from the specified image
+- RUN command will execute any command in a shell inside the container environment
+- `COPY` command copies files or directories from \<src\> and adds them to the filesystem of the container at the path \<dest\>
+```
+COPY {src} {dest}
+```
+- While `RUN` is executed on container, `COPY` is execute on host
+- `WORKDIR` sets the working directory for all following commands
+- Like changing into a directory using `cd`
+- `CMD` command is for the instruction that is to be execute when a Docker container starts
+- There can only be one `CMD` command in a dockerfile.
+
+## Example
+
+- Let our node.js project file structure be
+
+```
+.
+├── src/
+│   ├── server.js
+│   └── Dockerfile
+└── package.json
+
+```
+
+- Then our Dockerfile will be :
+
+```
+FROM node:19-alpine
+
+COPY package.json /app/
+COPY src /app/
+
+WORKDIR /app
+
+RUN npm install
+
+CMD ["node","server.js"]
+```
+
+## Building the image
+
+- To build the image use the following command:
+
+```bash
+docker build -t {name}
+
+docker build -t node-app
+```
+
+- The `-t` or `--tag` is used to set a name and optionally a tag in the "name:tag" format
+
