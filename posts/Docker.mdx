@@ -13,20 +13,65 @@ readTime: 10
 - Packages application with all the necessary dependencies, configuration, system tools and runtimes
 - Portable artifact, easily shared and distributed
 
+<table>
+  <thead>
+    <tr>
+      <th>Development before containers</th>
+      <th>Development after containers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <ul>
+          <li>Each developer needs to install and configure all services directly on their OS</li>
+          <li>Installation process different for each OS environment</li>
+          <li>Many steps where something can go wrong</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Own isolated environment</li>
+          <li>Postgres packaged with all dependencies and configs</li>
+          <li>Start service as a Docker container using 1 Docker command</li>
+          <li>Command same for all services</li>
+          <li>Standardized process for running any service on any local dev environment</li>
+          <li>Easy to run different versions of the same app without conflicts</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-| Development before containers                                                                 | Development after containers                                                                 |
-|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| <ul><li>Each developer needs to install and configure all services directly on their OS</li><li>Installation process different for each OS environment</li><li>Many steps where something can go wrong</li></ul> | <ul><li>Own isolated environment</li><li>Postgres packaged with all dependencies and configs</li><li>Start service as a Docker container using 1 Docker command</li><li>Command same for all services</li><li>Standardized process for running any service on any local dev environment</li><li>Easy to run different versions of the same app without conflicts</li></ul> |
-
-
-
-
-
-
-
-| Deployment before Containers                                      | Deployment after Containers                                           |
-|-------------------------------------------------------------------|-----------------------------------------------------------------------|
-| <ul><li>Installations and configurations done directly on the server's OS</li><li>Dependency version conflicts</li> <li>Human errors can happen</li> <li>Back and forth communications </li> </ul> | <ul><li>Instead of textual, everything is packaged inside the Docker artifact</li><li>No configurations needed on the server (except Docker runtime)</li><li>Less room for errors</li><li>Install Docker runtime on the server</li><li>Run Docker command to fetch and run the Docker artifacts</li></ul> |
+<table>
+  <thead>
+    <tr>
+      <th>Deployment before Containers</th>
+      <th>Deployment after Containers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <ul>
+          <li>Installations and configurations done directly on the server's OS</li>
+          <li>Dependency version conflicts</li>
+          <li>Human errors can happen</li>
+          <li>Back and forth communications</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Instead of textual, everything is packaged inside the Docker artifact</li>
+          <li>No configurations needed on the server (except Docker runtime)</li>
+          <li>Less room for errors</li>
+          <li>Install Docker runtime on the server</li>
+          <li>Run Docker command to fetch and run the Docker artifacts</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -63,17 +108,63 @@ readTime: 10
 
 # Images vs Containers
 
-| Images | Docker Container |
-|---|---|
-| <ul><li>An executable application artifact</li><li>Includes app source code, but also complete environment configuration</li><li>Add environment variables, create directories, files, etc.</li><li>Immutable template that defines how a container will be realized</li><li>You can run multiple containers from 1 image</li></ul> | <ul><li>Actually starts the application</li><li>A running instance of an image</li><li>That's when the container environment is created</li></ul> |
+<table>
+  <thead>
+    <tr>
+      <th>Images</th>
+      <th>Docker Container</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <ul>
+          <li>An executable application artifact</li>
+          <li>Includes app source code, but also complete environment configuration</li>
+          <li>Add environment variables, create directories, files, etc.</li>
+          <li>Immutable template that defines how a container will be realized</li>
+          <li>You can run multiple containers from 1 image</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Actually starts the application</li>
+          <li>A running instance of an image</li>
+          <li>That's when the container environment is created</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 # Public and Private Registries
 
-| Public Docker Registries | Private Docker Registries |
-|---|---|
-| <ul><li>Dockerhub largest public registry</li><li>Anyone can search and download docker images</li></ul> | <ul><li>You need to authenticate before accessing the registry</li><li>All big cloud provider offer private registries: Amazon ECR, Google Container Registry, ect.</li><li>Nexus (popular artifact repository manager)</li><li>Docker Hub</li></ul> |
-
-
+<table>
+  <thead>
+    <tr>
+      <th>Public Docker Registries</th>
+      <th>Private Docker Registries</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <ul>
+          <li>Docker Hub is the largest public registry</li>
+          <li>Anyone can search and download Docker images</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>You need to authenticate before accessing the registry</li>
+          <li>All big cloud providers offer private registries: Amazon ECR, Google Container Registry, etc.</li>
+          <li>Nexus (popular artifact repository manager)</li>
+          <li>Docker Hub</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 # Registry vs Repository
 
