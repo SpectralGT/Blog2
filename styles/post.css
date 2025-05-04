@@ -101,7 +101,7 @@ code {
 
 pre code {
   color: var(--white) !important;
-  background-color: #000 !important;
+  background-color: #0d0d0d !important;
 }
 
 .hljs-keyword {
