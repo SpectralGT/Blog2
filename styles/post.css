@@ -127,3 +127,39 @@ pre code {
 .hljs-number {
   color: lightgreen !important;
 }
+
+table{
+  /* border: 1px solid var(--white); */
+  margin-top: 3em;
+}
+
+th{
+  background-color: var(--red);
+  border: 1px solid var(--red);
+  color: var(--black);
+  font-family: OctosquaresThin;
+  font-weight: 500;
+  padding: 0.5em;
+
+  
+}
+td{
+  border: 1px solid var(--red);
+  padding: 1em;
+}
+
+ul {
+  padding-left: 1ch;
+  list-style-type: "∘ ";
+  list-style-position:outside;
+
+}
+ul li {
+  margin-top: 1em;
+}
+
+li::marker{
+
+  /* margin-right: 10em ; */
+  /* padding: 0px; */
+}
